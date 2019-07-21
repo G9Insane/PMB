@@ -263,11 +263,7 @@ return [
 
         'except' => [
             'migrations',
-            'password_resets',
-            'roles',
-            'role_user',
-            'permissions',
-            'permission_role',
+            'password_resets'
         ],
     ],
 

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sun, 21 Jul 2019 18:38:20 +0000.
+ * Date: Sun, 21 Jul 2019 19:24:59 +0000.
  */
 
 namespace App\Models;
@@ -11,8 +11,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class CalonMahasiswa
- * 
- * @property int $cmcm_id
+ *
+ * @property int $cm_id
  * @property string $cm_nisn
  * @property string $cm_nama
  * @property string $cm_jk
@@ -24,24 +24,27 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $cm_jurusan_sma
  * @property string $cm_tahun_lulus
  * @property string $cm_pendidikan_terakhir
- * @property int $cm_jurusan_id
  * @property string $cm_nama_ibu
+ * @property int $cm_jurusan_id
+ * @property int $cm_user_id
  * @property \Carbon\Carbon $cm_created_at
  * @property \Carbon\Carbon $cm_updated_at
  * @property \Carbon\Carbon $cm_deleted_at
- * 
+ *
  * @property \App\Models\Jurusan $jurusan
+ * @property \App\Models\User $user
  *
  * @package App\Models
  */
 class CalonMahasiswa extends Eloquent
 {
 	protected $table = 'calon_mahasiswa';
-	protected $primaryKey = 'cmcm_id';
+	protected $primaryKey = 'cm_id';
 	public $timestamps = false;
 
 	protected $casts = [
-		'cm_jurusan_id' => 'int'
+		'cm_jurusan_id' => 'int',
+		'cm_user_id' => 'int'
 	];
 
 	protected $dates = [
@@ -63,15 +66,18 @@ class CalonMahasiswa extends Eloquent
 		'cm_jurusan_sma',
 		'cm_tahun_lulus',
 		'cm_pendidikan_terakhir',
-		'cm_jurusan_id',
 		'cm_nama_ibu',
-		'cm_created_at',
-		'cm_updated_at',
-		'cm_deleted_at'
+		'cm_jurusan_id',
+		'cm_user_id'
 	];
 
 	public function jurusan()
 	{
 		return $this->belongsTo(\App\Models\Jurusan::class, 'cm_jurusan_id');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo(\App\Models\User::class, 'cm_user_id');
 	}
 }

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','is_admin'
     ];
 
     /**
@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function calon_mahasiswas()
+    {
+        return $this->hasOne(\App\Models\CalonMahasiswa::class, 'cm_user_id');
+    }
+
+    public function hasil_seleksis()
+    {
+        return $this->hasOne(\App\Models\HasilSeleksi::class, 'hs_user_id');
+    }
 }

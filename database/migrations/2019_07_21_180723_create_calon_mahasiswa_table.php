@@ -14,7 +14,6 @@ class CreateCalonMahasiswaTable extends Migration
             $table->string($p.'_nama');
             $table->enum($p.'_jk',['L','P']);
             $table->date($p.'_tanggal_lahir');
-            $table->string($p.'_email');
             $table->string($p.'_no_telp');
             $table->text($p.'_alamat');
             $table->string($p.'_sekolah_asal');

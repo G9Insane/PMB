@@ -1,0 +1,193 @@
+<?php
+
+use App\Models\CalonMahasiswa;
+use App\Models\HasilSeleksi;
+use Bezhanov\Faker\Provider\Educator;
+use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
+
+class CalonMahasiswaTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $faker = \Faker\Factory::create();
+        $faker->addProvider(new Educator($faker));
+        $p = 'cm';
+        for ($i = 1; $i <= 500; $i++) {
+            CalonMahasiswa::create(
+                [
+                    $p . '_nisn' => $faker->unique()->numberBetween($min = 1000000000, $max = 9999999999),
+                    $p . '_nama' => $faker->name,
+                    $p . '_jk' => $faker->randomElement(['L', 'P']),
+                    $p . '_tanggal_lahir' => $faker->date($format = 'Y-m-d'),
+                    $p . '_no_telp' => $faker->phoneNumber,
+                    $p . '_alamat' => $faker->address,
+                    $p . '_sekolah_asal' => $faker->secondarySchool,
+                    $p . '_jurusan_sma' => $faker->randomElement(['Ilmu Pengetahuan Alam (IPA)',
+                        'Ilmu Pengetahuan Sosial (IPS)',
+                        'BAHASA',
+                        'KEAGAMAAN',
+                        'Administrasi Perkantoran',
+                        'Agribisnis Aneka Ternak',
+                        'Agribisnis Ikan Air Laut',
+                        'Agribisnis Ikan Air Payau',
+                        'Agribisnis Ikan Air Tawar',
+                        'Agribisnis Ternak Ruminansia',
+                        'Agribisnis Ternak Unggas',
+                        'Air Frame dan Power Plant',
+                        'Akomodasi Perhotelan',
+                        'Akuntansi',
+                        'Analis Kimia',
+                        'Analisis Kesehatan',
+                        'Animasi',
+                        'Asuransi',
+                        'Bangunan Kapal Non Baja',
+                        'Broadcasting Radio',
+                        'Broadcasting Televisi',
+                        'Budidaya Rumput Laut',
+                        'Budidaya Tanaman Buah',
+                        'Budidaya Tanaman Hias',
+                        'Budidaya Tanaman Pangan',
+                        'Budidaya Tanaman Perkebunan',
+                        'Budidaya Tanaman Sayuran',
+                        'Desain Komunikasi Grafis',
+                        'Electrical Avionic',
+                        'Farmasi',
+                        'Farmasi Industri',
+                        'Gambar Rancang Bangun',
+                        'Garmen',
+                        'Geologi Pertambangan',
+                        'Insalasi Pemesinan Kapal',
+                        'Instrumentasi Logam dan gelas',
+                        'Interior Dekorator',
+                        'Interior Kapal',
+                        'Jasa Boga',
+                        'Kendaraan Ringan',
+                        'Keperawatan',
+                        'Keperawatan Gigi',
+                        'Kesehatan Hewan',
+                        'Kimia Industri',
+                        'Kontrol Mekanik',
+                        'Kontrol Proses',
+                        'Kria Kayu',
+                        'Kria Keramik',
+                        'Kria Kulit',
+                        'Kria Logam',
+                        'Kria Tekstil',
+                        'Listrik Kapal',
+                        'Manajemen Properti',
+                        'Mechanic Repair',
+                        'Multimedia',
+                        'Nautika Kapal Penangkap Ikan',
+                        'Nautika pelayaran Niaga',
+                        'Ototronik',
+                        'Patiseri',
+                        'Pekerjaan Sosial',
+                        'Pemasaran',
+                        'Pembangunan dan Perbaikan Kapal Baja',
+                        'Pengawasan Mutu',
+                        'Pengelolaan Hasil Pertanian Non Pangan',
+                        'Pengelolaan Hasil Pertanian Pangan',
+                        'Pengolahan Hutan',
+                        'Perbaikan Bodi Dan Cat',
+                        'Perbankan',
+                        'Perbenihan Tanaman',
+                        'Periklanan',
+                        'Persiapan Grafika',
+                        'Produksi Grafika',
+                        'Rekayasa Perangkat Lunak',
+                        'Seni Karawitan',
+                        'Seni Murni',
+                        'Seni Musik Klasik',
+                        'Seni Musik Non Klasik',
+                        'Seni Pedalangan',
+                        'Seni Tari',
+                        'Seni Teater',
+                        'Sepeda Motor Kecil Dan Besar',
+                        'Tata Busana',
+                        'Tata Kecantikan Kulit',
+                        'Tata Kecantikan Rambut',
+                        'Teknik Pengecoran Logam',
+                        'Teknik Alat Berat',
+                        'Teknik Alat dan Mesin Pertanian',
+                        'Teknik Audio - Video',
+                        'Teknik Batu dan Beton',
+                        'Teknik dan Manajemen Industri',
+                        'Teknik dan Manajemen Pergudangan',
+                        'Teknik dan Manajemen Transportasi',
+                        'Teknik Distribusi Tenaga Listrik',
+                        'Teknik Elektronika Industri',
+                        'Teknik Fabrikasi Logam',
+                        'Teknik Furnitur',
+                        'Teknik Gambar Bangunan',
+                        'Teknik Gambar Mesin',
+                        'Teknik Jaringan Akses',
+                        'Teknik Komputer Dan Jaringan',
+                        'Teknik Konstruksi Baja',
+                        'Teknik Konstruksi Kayu',
+                        'Teknik Mekatronika',
+                        'Teknik Mesin Industri',
+                        'Teknik Otomasi',
+                        'Teknik Pekerjaan Finishing',
+                        'Teknik Pemanfaatan Tenaga Listrik',
+                        'Teknik Pembangkit Tenaga Listrik',
+                        'Teknik Pemboran',
+                        'Teknik Pemeliharaan Mekanik Industri',
+                        'Teknik Pemintalan Filament',
+                        'Teknik Pemintalan Stapel',
+                        'Teknik Pendingin Dan Tata Udara',
+                        'Teknik Pengelasan',
+                        'Teknik Pengolahan Migas dan Petro Kimia',
+                        'Teknik Plumbing dan sanitasi',
+                        'Teknik Produksi',
+                        'Teknik Siaran Radio',
+                        'Teknik Siaran Televisi',
+                        'Teknik Suitsing',
+                        'Teknik Survei dan pemetaan',
+                        'Teknik Tanah dan Air',
+                        'Teknik Transmisi',
+                        'Teknik Transmisi Tenaga Listrik',
+                        'Teknika Kapal Penangkap Ikan',
+                        'Teknika Pelayaran Niaga',
+                        'Teknologi Biofuel',
+                        'Teknologi Las Kapal',
+                        'Teknologi Pembuatan Kain',
+                        'Teknologi Pencelupan',
+                        'Teknologi Pengecapan',
+                        'Teknologi Pengolahan Sampah dan Limbah',
+                        'Terapi Spa dan Kebugaran',
+                        'Usaha Jasa Pariwisata',
+                        'Usaha Kecil Menengah',
+                        'Lain - Lain',]),
+                    $p . '_tahun_lulus' => $faker->year(),
+                    $p . '_pendidikan_terakhir' => $faker->randomElement(['SMA', 'D3', 'S1']),
+                    $p . '_nama_ibu' => $faker->firstNameFemale(),
+                    $p . '_jurusan_id' => rand(1, 5),
+                    $p . '_user_id' => $i,
+                ]
+            );
+            $m = rand(60, 100);
+            $bi = rand(60, 100);
+            $bin = rand(60, 100);
+            $bk = rand(60, 100);
+            HasilSeleksi::create(
+                [
+                    'hs_user_id' => $i,
+                    'hs_matematika' => $m,
+                    'hs_b_indonesia' => $bi,
+                    'hs_b_inggris' => $bin,
+                    'hs_kejuruan' => $bk,
+                    'hs_total' => $m + $bi + $bin + $bk,
+                    'hs_rata' => ($m + $bi + $bin + $bk) / 5,
+                    'hs_status' => $faker->randomElement(['L,TL']),
+                ]
+            );
+        }
+
+    }
+}

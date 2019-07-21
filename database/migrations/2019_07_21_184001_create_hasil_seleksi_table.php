@@ -14,19 +14,16 @@ class CreateHasilSeleksiTable extends Migration
     public function up()
     {
         Schema::create('hasil_seleksi', function (Blueprint $table,$p='hs') {
-            $table->bigIncrements($p.'id');
+            $table->bigIncrements($p.'_id');
             $table->unsignedBigInteger($p.'_user_id');
             $table->foreign($p.'_user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger($p.'_jurusan_id');
-            $table->foreign($p.'_jurusan_id')->references('j_id')->on('jurusan')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->decimal($p.'_matematika','3','2');
-            $table->decimal($p.'_b_indonesia','3','2');
-            $table->decimal($p.'_b_inggris','3','2');
-            $table->decimal($p.'_kejuruan','3','2');
-            $table->decimal($p.'_total','3','2');
-            $table->decimal($p.'_rata','3','2');
+            $table->decimal($p.'_matematika','5','2');
+            $table->decimal($p.'_b_indonesia','5','2');
+            $table->decimal($p.'_b_inggris','5','2');
+            $table->decimal($p.'_kejuruan','5','2');
+            $table->decimal($p.'_total','5','2');
+            $table->decimal($p.'_rata','5','2');
             $table->enum($p.'_status',['L','TL']);
             $table->timestamp($p.'_created_at')->useCurrent();
             $table->timestamp($p.'_updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))->nullable();
