@@ -11,7 +11,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Jurusan
- * 
+ *
  * @property int $j_id
  * @property string $j_nama
  * @property string $j_singkatan
@@ -19,7 +19,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $j_created_at
  * @property \Carbon\Carbon $j_updated_at
  * @property \Carbon\Carbon $j_deleted_at
- * 
+ *
  * @property \Illuminate\Database\Eloquent\Collection $calon_mahasiswas
  * @property \Illuminate\Database\Eloquent\Collection $hasil_seleksis
  * @property \Illuminate\Database\Eloquent\Collection $jurusan_kuota
@@ -59,6 +59,6 @@ class Jurusan extends Eloquent
 
 	public function jurusan_kuota()
 	{
-		return $this->hasMany(\App\Models\JurusanKuotum::class, 'jk_jurusan_id');
+		return $this->hasOne(\App\Models\JurusanKuotum::class, 'jk_jurusan_id','j_id');
 	}
 }

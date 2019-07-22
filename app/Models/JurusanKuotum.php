@@ -11,14 +11,14 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class JurusanKuotum
- * 
+ *
  * @property int $jk_id
  * @property int $jk_jurusan_id
  * @property int $jk_kuota
  * @property \Carbon\Carbon $jk_created_at
  * @property \Carbon\Carbon $jk_updated_at
  * @property \Carbon\Carbon $jk_deleted_at
- * 
+ *
  * @property \App\Models\Jurusan $jurusan
  *
  * @package App\Models
@@ -51,4 +51,6 @@ class JurusanKuotum extends Eloquent
 	{
 		return $this->belongsTo(\App\Models\Jurusan::class, 'jk_jurusan_id');
 	}
+
+
 }

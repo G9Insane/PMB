@@ -2,11 +2,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>{{ config('app.name', 'Laravel') }} | @yield('title','Default')</title>
 @yield('before_css')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="{{asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
 <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
