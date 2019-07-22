@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CalonMahasiswa;
 use App\Models\Jurusan;
 use App\Models\JurusanKuotum;
+use App\User;
 use Illuminate\Http\Request;
 use stdClass;
 
@@ -27,20 +28,13 @@ class AdminController extends Controller
     public function jurusanSave(Request $request)
     {
 
-        $data = Jurusan::updateOrCreate(
-            ['j_id'=> $request->j_id],
-
-                $request->except('jurusan_kuota')
-            );
+        $data = Jurusan::updateOrCreate(['j_id'=> $request->j_id], $request->except('jurusan_kuota'));
         if ($data) {
             JurusanKuotum::updateOrCreate([
                 'jk_jurusan_id' => $data->j_id
-            ], [
-                'jk_jurusan_id' => $data->j_id,
-                'jk_kuota' => $request->jk_kuota,
-            ]);
+            ], ['jk_jurusan_id' => $data->j_id, 'jk_kuota' => $request->jk_kuota,]);
         }
-        return $request->all();
+        return response()->json('data');
     }
 
     public function jurusanDelete($id)
@@ -49,28 +43,55 @@ class AdminController extends Controller
         return response()->json($data);
     }
 
-    public function hasilList()
+    public function hasilList($id)
     {
         $data = new stdClass();
-        return $data->calon = JurusanKuotum::with('jurusan.calon_mahasiswas.user.hasil_seleksis')->get();
-        return view('pages.hasil');
+        $data->no = 1;
+        $data->jurusan = Jurusan::with('jurusan_kuota')->get();
+        $data->hasil = CalonMahasiswa::with('user.hasil_seleksis','jurusan.jurusan_kuota')
+            ->where('cm_jurusan_id',$id)->get();
+        return view('pages.hasil',compact('data'));
     }
 
     public function calonMahasiswaList()
     {
         $data = new stdClass();
         $data->no = 1;
+        $data->jurusan = Jurusan::with('jurusan_kuota')->get();
         $data->mhs = CalonMahasiswa::with('jurusan')->get();
         return view('pages.calonmahasiswa',compact('data'));
     }
 
     public function calonMahasiswaEdit($id)
     {
-        $data = new stdClass();
-        $data->no = 1;
-        $data->mhs = CalonMahasiswa::leftJoin('jurusan')->get();
-        return view('pages.calonmahasiswa',compact('data'));
+        $data = CalonMahasiswa::leftJoin('users','cm_user_id','=','id')->where('id',$id)->first();
+        return response()->json($data);
     }
+
+    public function calonMahasiswaSave(Request $request)
+    {
+
+        $request->merge([
+            'password' => bcrypt($request->password),
+        ]);
+
+        $data = User::updateOrCreate(  ['id'=> $request->id],
+            $request->only('id','name','email','password')
+        );
+        $request->request->add(
+            ['cm_nama' => $request->name]
+        );
+
+        if ($data){
+            CalonMahasiswa::updateOrCreate([
+                'cm_user_id' => $data->id
+            ],
+                $request->except('id','name','email','password')
+            );
+        }
+        return response()->json($data,200);
+    }
+
     public function calonMahasiswaDelete($id)
     {
         $data = CalonMahasiswa::where('cm_id',$id)->delete();

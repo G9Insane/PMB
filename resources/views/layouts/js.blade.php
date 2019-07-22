@@ -20,7 +20,7 @@
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <script>$.widget.bridge('uibutton', $.ui.button)</script>
 <script>
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -36,6 +36,7 @@
             $.get(url, function (data) {
                 $.each(data, function (k, v) {
                     $('#' + k).val(v);
+                    console.log(k,v);
                 })
 
             })
@@ -51,7 +52,7 @@
                 data: $('form').serializeArray()
             })
                 .done(function (data) {
-                   location.reload()
+                   // location.reload()
                 });
         }
         function d(url) {

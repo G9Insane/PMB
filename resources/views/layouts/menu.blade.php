@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin.hasil.list')}}" class="nav-link">
+                    <a href="{{route('admin.hasil.list',1)}}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Hasil
