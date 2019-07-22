@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CalonMahasiswa;
 use App\Models\Jurusan;
 use App\Models\JurusanKuotum;
 use Illuminate\Http\Request;
@@ -50,6 +51,8 @@ class AdminController extends Controller
 
     public function hasilList()
     {
+        $data = new stdClass();
+        return $data->calon = JurusanKuotum::with('jurusan.calon_mahasiswas.user.hasil_seleksis')->get();
         return view('pages.hasil');
     }
 

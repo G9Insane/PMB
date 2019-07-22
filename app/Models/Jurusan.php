@@ -52,11 +52,6 @@ class Jurusan extends Eloquent
 		return $this->hasMany(\App\Models\CalonMahasiswa::class, 'cm_jurusan_id');
 	}
 
-	public function hasil_seleksis()
-	{
-		return $this->hasMany(\App\Models\HasilSeleksi::class, 'hs_jurusan_id');
-	}
-
 	public function jurusan_kuota()
 	{
 		return $this->hasOne(\App\Models\JurusanKuotum::class, 'jk_jurusan_id','j_id');
