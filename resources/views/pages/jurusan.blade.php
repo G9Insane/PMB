@@ -2,7 +2,6 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -97,45 +96,6 @@
 @endsection
 @section('after_js')
     <script>
-        function showModal() {
-            $('#modal-xl').modal('show');
-        }
-        $('#modal-xl').on('hidden.bs.modal', function () {
-            $('form').trigger("reset");
-        });
-        function edit(url) {
-            $.get(url, function (data) {
-                $.each(data, function (k, v) {
-                    $('#' + k).val(v);
-                })
-
-            })
-                .done(function () {
-                    showModal();
-                })
-        }
-
-        function save(url) {
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: $('form').serializeArray()
-            })
-                .done(function (data) {
-                   location.reload()
-                });
-        }
-        function d(url) {
-            $.ajax({
-                type: 'POST',
-                url: url
-            })
-                .done(function (data) {
-                    location.reload()
-                });
-        }
-        $(function () {
-            $('#example1').DataTable({});
-        });
+        
     </script>
 @endsection

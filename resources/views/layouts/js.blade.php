@@ -20,10 +20,51 @@
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <script>$.widget.bridge('uibutton', $.ui.button)</script>
 <script>
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    function showModal() {
+            $('#modal-xl').modal('show');
+        }
+        $('#modal-xl').on('hidden.bs.modal', function () {
+            $('form').trigger("reset");
+        });
+        function edit(url) {
+            $.get(url, function (data) {
+                $.each(data, function (k, v) {
+                    $('#' + k).val(v);
+                })
+
+            })
+                .done(function () {
+                    showModal();
+                })
+        }
+
+        function save(url) {
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: $('form').serializeArray()
+            })
+                .done(function (data) {
+                   location.reload()
+                });
+        }
+        function d(url) {
+            $.ajax({
+                type: 'POST',
+                url: url
+            })
+                .done(function (data) {
+                    location.reload()
+                });
+        }
+        $(function () {
+            $('#example1').DataTable({});
+        });
 </script>
 @yield('after_js')

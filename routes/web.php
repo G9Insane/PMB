@@ -23,7 +23,9 @@ Route::post('/jurusan/save', 'AdminController@jurusanSave')->name('admin.jurusan
 Route::post('/jurusan/delete/{id}', 'AdminController@jurusanDelete')->name('admin.jurusan.delete');
 Route::get('/hasil', 'AdminController@hasilList')->name('admin.hasil.list');
 Route::get('/calonmahasiswa', 'AdminController@calonMahasiswaList')->name('admin.calonmahasiswa.list');
-
+Route::get('/calonmahasiswa/{id}', 'AdminController@calonMahasiswaEdit')->name('admin.calonmahasiswa.edit');
+Route::post('/calonmahasiswa/save', 'AdminController@calonMahasiswaSave')->name('admin.calonmahasiswa.save');
+Route::post('/calonmahasiswa/delete/{id}', 'AdminController@calonMahasiswaDelete')->name('admin.calonmahasiswa.delete');
 
 Auth::routes();
 

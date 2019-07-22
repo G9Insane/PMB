@@ -58,6 +58,22 @@ class AdminController extends Controller
 
     public function calonMahasiswaList()
     {
-        return view('pages.calonmahasiswa');
+        $data = new stdClass();
+        $data->no = 1;
+        $data->mhs = CalonMahasiswa::with('jurusan')->get();
+        return view('pages.calonmahasiswa',compact('data'));
+    }
+
+    public function calonMahasiswaEdit($id)
+    {
+        $data = new stdClass();
+        $data->no = 1;
+        $data->mhs = CalonMahasiswa::leftJoin('jurusan')->get();
+        return view('pages.calonmahasiswa',compact('data'));
+    }
+    public function calonMahasiswaDelete($id)
+    {
+        $data = CalonMahasiswa::where('cm_id',$id)->delete();
+        return response()->json($data);
     }
 }
