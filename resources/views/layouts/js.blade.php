@@ -26,46 +26,53 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
     function showModal() {
-            $('#modal-xl').modal('show');
-        }
-        $('#modal-xl').on('hidden.bs.modal', function () {
-            $('form').trigger("reset");
-        });
-        function edit(url) {
-            $.get(url, function (data) {
-                $.each(data, function (k, v) {
-                    $('#' + k).val(v);
-                    console.log(k,v);
-                })
+        $('#modal-xl').modal('show');
+    }
 
-            })
-                .done(function () {
-                    showModal();
-                })
-        }
+    $('#modal-xl').on('hidden.bs.modal', function () {
+        $('form').trigger("reset");
+    });
 
-        function save(url) {
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: $('form').serializeArray()
+    function edit(url) {
+        $.get(url, function (data) {
+            $.each(data, function (k, v) {
+                $('#' + k).val(v);
+                console.log(k, v);
             })
-                .done(function (data) {
-                   // location.reload()
-                });
-        }
-        function d(url) {
-            $.ajax({
-                type: 'POST',
-                url: url
+
+        })
+            .done(function () {
+                showModal();
             })
-                .done(function (data) {
-                    location.reload()
-                });
-        }
-        $(function () {
-            $('#example1').DataTable({});
-        });
+    }
+
+    function save(url) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: $('form').serializeArray()
+        })
+            .done(function (data) {
+                // location.reload()
+            });
+    }
+
+    function d(url) {
+        $.ajax({
+            type: 'POST',
+            url: url
+        })
+            .done(function (data) {
+                location.reload()
+            });
+    }
+
+    $(function () {
+        $('#example1').DataTable({});
+        $('a[href="' + window.location.href + '"]')
+            .addClass('active')
+    });
 </script>
 @yield('after_js')

@@ -48,8 +48,12 @@ class AdminController extends Controller
         $data = new stdClass();
         $data->no = 1;
         $data->jurusan = Jurusan::with('jurusan_kuota')->get();
-        $data->hasil = CalonMahasiswa::with('user.hasil_seleksis','jurusan.jurusan_kuota')
-            ->where('cm_jurusan_id',$id)->get();
+        $data->hasil = CalonMahasiswa::with('jurusan.jurusan_kuota')
+            ->join('users','id','=','cm_user_id')
+            ->join('hasil_seleksi','users.id','=','hs_user_id')
+            ->where('cm_jurusan_id',$id)
+            ->orderByDesc('hs_rata')
+            ->get();
         return view('pages.hasil',compact('data'));
     }
 

@@ -14,7 +14,10 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 Route::get('/dashboard', function () {
-    return view('pages.dashboard');
+    $total = 0;
+    $kuota = 0;
+    $data = \App\Models\Jurusan::with('jurusan_kuota','calon_mahasiswas')->get();
+    return view('pages.dashboard',compact('data','total','kuota'));
 })->name('admin.dashboard');
 
 Route::get('/jurusan', 'AdminController@jurusanList')->name('admin.jurusan.list');

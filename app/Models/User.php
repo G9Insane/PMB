@@ -61,6 +61,6 @@ class User extends Eloquent
 
 	public function hasil_seleksis()
 	{
-		return $this->hasOne(\App\Models\HasilSeleksi::class, 'hs_user_id');
+		return $this->hasOne(\App\Models\HasilSeleksi::class, 'hs_user_id')->orderBy('hs_rata');
 	}
 }

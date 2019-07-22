@@ -1,4 +1,5 @@
 @extends('template')
+@section('title','Hasil Seleksi Jurusan '.$data->hasil->first()->jurusan->j_nama)
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -38,12 +39,12 @@
                                 <td>{{$i->cm_nisn}}</td>
                                 <td>{{$i->cm_nama}}</td>
                                 <td>{{$i->cm_jk}}</td>
-                                <td>{{$i->user->hasil_seleksis->hs_matematika}}</td>
-                                <td>{{$i->user->hasil_seleksis->hs_b_indonesia}}</td>
-                                <td>{{$i->user->hasil_seleksis->hs_b_inggris}}</td>
-                                <td>{{$i->user->hasil_seleksis->hs_kejuruan}}</td>
-                                <td>{{$i->user->hasil_seleksis->hs_total}}</td>
-                                <td>{{$i->user->hasil_seleksis->hs_rata}}</td>
+                                <td>{{$i->hs_matematika}}</td>
+                                <td>{{$i->hs_b_indonesia}}</td>
+                                <td>{{$i->hs_b_inggris}}</td>
+                                <td>{{$i->hs_kejuruan}}</td>
+                                <td>{{$i->hs_total}}</td>
+                                <td>{{$i->hs_rata}}</td>
                                 @if($i->jurusan->jurusan_kuota->jk_kuota>=$data->no++)
                                     <td>Lulus</td>
                                 @else

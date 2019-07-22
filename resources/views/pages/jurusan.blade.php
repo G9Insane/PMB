@@ -1,4 +1,5 @@
 @extends('template')
+@section('title','Data Jurusan')
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -96,6 +97,6 @@
 @endsection
 @section('after_js')
     <script>
-        
+
     </script>
 @endsection
