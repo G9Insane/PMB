@@ -62,8 +62,3 @@
         <!-- /.col -->
     </div>
 @endsection
-@section('after_js')
-    <script>
-
-    </script>
-@endsection

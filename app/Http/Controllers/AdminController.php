@@ -74,22 +74,17 @@ class AdminController extends Controller
 
     public function calonMahasiswaSave(Request $request)
     {
-
         $request->merge([
             'password' => bcrypt($request->password),
         ]);
-
         $data = User::updateOrCreate(  ['id'=> $request->id],
             $request->only('id','name','email','password')
         );
         $request->request->add(
             ['cm_nama' => $request->name]
         );
-
         if ($data){
-            CalonMahasiswa::updateOrCreate([
-                'cm_user_id' => $data->id
-            ],
+            CalonMahasiswa::updateOrCreate(['cm_user_id' => $data->id],
                 $request->except('id','name','email','password')
             );
         }

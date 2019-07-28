@@ -42,33 +42,15 @@ class CalonMahasiswa extends Eloquent
 	protected $primaryKey = 'cm_id';
 	public $timestamps = false;
 
-	protected $casts = [
-		'cm_jurusan_id' => 'int',
-		'cm_user_id' => 'int'
+	protected $casts = ['cm_jurusan_id' => 'int', 'cm_user_id' => 'int'
 	];
 
-	protected $dates = [
-		'cm_tanggal_lahir',
-		'cm_created_at',
-		'cm_updated_at',
-		'cm_deleted_at'
+	protected $dates = ['cm_tanggal_lahir', 'cm_created_at', 'cm_updated_at', 'cm_deleted_at'
 	];
 
-	protected $fillable = [
-		'cm_nisn',
-		'cm_nama',
-		'cm_jk',
-		'cm_tanggal_lahir',
-		'cm_email',
-		'cm_no_telp',
-		'cm_alamat',
-		'cm_sekolah_asal',
-		'cm_jurusan_sma',
-		'cm_tahun_lulus',
-		'cm_pendidikan_terakhir',
-		'cm_nama_ibu',
-		'cm_jurusan_id',
-		'cm_user_id'
+	protected $fillable = ['cm_nisn', 'cm_nama', 'cm_jk', 'cm_tanggal_lahir', 'cm_email', 'cm_no_telp',
+        'cm_alamat', 'cm_sekolah_asal', 'cm_jurusan_sma', 'cm_tahun_lulus', 'cm_pendidikan_terakhir',
+        'cm_nama_ibu', 'cm_jurusan_id', 'cm_user_id'
 	];
 
 	public function jurusan()
